@@ -23,7 +23,7 @@ class Worker {
     // Virtual execute function
     void virtual execute();
     // Map to output object
-    Handle<Value> virtual map();
+    v8::Handle<Value> virtual map();
 };
 
 #endif  // WORKER_H_

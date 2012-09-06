@@ -116,10 +116,10 @@ class NetworkIOCountersWorker : public Worker {
       free(buf);
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // HandleScope scope;
-      Local<Object> resultsObject = Object::New();
+      v8::Local<Object> resultsObject = Object::New();
 
       // If not pr disk accumulate all the data
       if(!prNic) {

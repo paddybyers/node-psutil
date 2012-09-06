@@ -52,7 +52,7 @@ class SysconfWorker : public Worker {
       this->result = value;
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       return Number::New(this->result);
     }
@@ -72,10 +72,10 @@ class SysconfWorker : public Worker {
     {
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // HandleScope scope;
-      Local<Object> resultsObject = Object::New();
+      v8::Local<Object> resultsObject = Object::New();
       // Return final object
       return resultsObject;
     }

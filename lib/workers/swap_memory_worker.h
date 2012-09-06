@@ -96,10 +96,10 @@ class SwapMemoryWorker : public Worker {
       this->results->percent = ceilf(this->results->percent * 100.0) / 100.0;
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // HandleScope scope;
-      Local<Object> resultsObject = Object::New();
+      v8::Local<Object> resultsObject = Object::New();
       // Map the structure to the final object
       resultsObject->Set(String::New("total"), Number::New(this->results->total));
       resultsObject->Set(String::New("used"), Number::New(this->results->used));

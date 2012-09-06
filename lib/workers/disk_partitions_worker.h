@@ -173,10 +173,10 @@ class DiskPartitionsWorker : public Worker {
 
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // HandleScope scope;
-      Local<Object> resultsObject = Array::New(this->results.size());
+      v8::Local<Object> resultsObject = Array::New(this->results.size());
       vector<DiskPartition*>::const_iterator i;
       int index = 0;
 

@@ -61,10 +61,10 @@ class DiskUsageWorker : public Worker {
       this->result->percent = round((this->result->percent * 100.0) * 10) / 10;
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // HandleScope scope;
-      Local<Object> resultsObject = Object::New();
+      v8::Local<Object> resultsObject = Object::New();
       resultsObject->Set(String::New("total"), Number::New(this->result->total));
       resultsObject->Set(String::New("free"), Number::New(this->result->free));
       resultsObject->Set(String::New("used"), Number::New(this->result->used));

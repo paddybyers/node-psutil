@@ -56,12 +56,12 @@ class PidListWorker : public Worker {
       }
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // Process all the values
       vector<uint64_t>::const_iterator i;
       // HandleScope scope;
-      Local<Array> resultsObject = Array::New(this->results.size());
+      v8::Local<Array> resultsObject = Array::New(this->results.size());
       // Just an array pointer
       int index = 0;
       // Go over all the items in the vector

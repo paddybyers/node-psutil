@@ -80,9 +80,9 @@ class ProcessWorker : public Worker {
       }
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
-      Handle<Value> result;
+      v8::Handle<Value> result;
 
       if(this->error == true) {
         return Undefined();

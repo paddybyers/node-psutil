@@ -39,9 +39,9 @@
 // using namespace v8;
 using namespace node;
 
-static v8::Handle<Value> VException(const char *msg)
+static v8::Handle<v8::Value> VException(const char *msg)
 {
-  HandleScope scope;
+  v8::HandleScope scope;
   return ThrowException(Exception::Error(String::New(msg)));
 }
 
@@ -54,7 +54,7 @@ PSUtilLib::PSUtilLib() : ObjectWrap()
 void PSUtilLib::Initialize(v8::Handle<v8::Object> target)
 {
   // Grab the scope of the call from Node
-  HandleScope scope;
+  v8::HandleScope scope;
 
   // Define a new function template
   Local<FunctionTemplate> t = FunctionTemplate::New(New);
@@ -82,8 +82,8 @@ void PSUtilLib::Initialize(v8::Handle<v8::Object> target)
   target->ForceSet(String::NewSymbol("PSUtilLib"), constructor_template->GetFunction());
 }
 
-Handle<Value> PSUtilLib::NetworkIOCounters(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<v8::Value> PSUtilLib::NetworkIOCounters(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && args[0]->IsBoolean() == false && args[1]->IsFunction() == false) return VException("function requires [boolean, function] or [function] 1");
@@ -105,8 +105,8 @@ Handle<Value> PSUtilLib::NetworkIOCounters(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::DiskIOCounters(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::DiskIOCounters(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && args[0]->IsBoolean() == false && args[1]->IsFunction() == false) return VException("function requires [boolean, function] or [function]");
@@ -128,8 +128,8 @@ Handle<Value> PSUtilLib::DiskIOCounters(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::VirtualMemory(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::VirtualMemory(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 1 && args[0]->IsFunction() == false) return VException("function requires [function]");
@@ -148,8 +148,8 @@ Handle<Value> PSUtilLib::VirtualMemory(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::SwapMemory(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::SwapMemory(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 1 && args[0]->IsFunction() == false) return VException("function requires [function]");
@@ -169,8 +169,8 @@ Handle<Value> PSUtilLib::SwapMemory(const Arguments& args) {
 }
 
 
-Handle<Value> PSUtilLib::CPUPercent(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::CPUPercent(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && !args[0]->IsBoolean() && !args[1]->IsFunction()) return VException("function requires [boolean, function] or [function]");
@@ -189,8 +189,8 @@ Handle<Value> PSUtilLib::CPUPercent(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::PidList(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::PidList(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 1 && !args[0]->IsFunction()) return VException("function requires [function]");
@@ -207,8 +207,8 @@ Handle<Value> PSUtilLib::PidList(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::PidExists(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::PidExists(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && !args[0]->IsNumber() && !args[1]->IsFunction()) return VException("function requires [number, function]");
@@ -227,8 +227,8 @@ Handle<Value> PSUtilLib::PidExists(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::ProcessInfo(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::ProcessInfo(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 4 && !args[0]->IsNumber() && !args[1]->IsNumber() && !args[2]->IsObject() && !args[3]->IsFunction()) return VException("function requires [number, number, object, function]");
@@ -253,8 +253,8 @@ Handle<Value> PSUtilLib::ProcessInfo(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::DiskPartitions(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::DiskPartitions(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 1 && !args[0]->IsFunction()) return VException("function requires [function]");
@@ -274,8 +274,8 @@ Handle<Value> PSUtilLib::DiskPartitions(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::DiskUsage(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::DiskUsage(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && !args[0]->IsString() && !args[1]->IsFunction()) return VException("function requires [string, function]");
@@ -301,8 +301,8 @@ Handle<Value> PSUtilLib::DiskUsage(const Arguments& args) {
   return Undefined();
 }
 
-Handle<Value> PSUtilLib::SysConf(const Arguments& args) {
-  HandleScope scope;
+v8::Handle<Value> PSUtilLib::SysConf(const Arguments& args) {
+  v8::HandleScope scope;
 
   // Legal modes
   if(args.Length() == 2 && !args[0]->IsUint32() && !args[1]->IsFunction()) return VException("function requires [int, function]");
@@ -375,7 +375,7 @@ void PSUtilLib::After(uv_work_t* work_req) {
 }
 
 // Create a new instance of BSON and passing it the existing context
-Handle<Value> PSUtilLib::New(const Arguments &args)
+v8::Handle<v8::Value> PSUtilLib::New(const Arguments &args)
 {
   HandleScope scope;
 
@@ -385,8 +385,8 @@ Handle<Value> PSUtilLib::New(const Arguments &args)
 }
 
 // Exporting function
-extern "C" void init(Handle<Object> target)
+extern "C" void init(v8::Handle<v8::Object> target)
 {
-  HandleScope scope;
+  v8::HandleScope scope;
   PSUtilLib::Initialize(target);
 }

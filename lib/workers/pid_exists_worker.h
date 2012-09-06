@@ -36,7 +36,7 @@ class PidExistsWorker : public Worker {
       this->exists = pid_exists(this->pid) == 1 ? true : false;
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       return v8::Boolean::New(this->exists);
     }

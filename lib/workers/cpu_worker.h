@@ -121,13 +121,13 @@ class CPUWorker : public Worker {
       }
     }
 
-    Handle<Value> inline map()
+    v8::Handle<Value> inline map()
     {
       // If not pr disk accumulate all the data
       if(!this->perCPU) {
         vector<CPUStatistics*>::const_iterator i;
         // HandleScope scope;
-        Local<Object> resultsObject = Object::New();
+        v8::Local<Object> resultsObject = Object::New();
 
         // All accumulators
         double user, nice, system, idle;
